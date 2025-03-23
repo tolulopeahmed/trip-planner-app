@@ -1,27 +1,37 @@
-from pathlib import Path
-
 import environ
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
+SECRET_KEY = env.str("SECRET_KEY")
+
 
 # Use the environment variables
 DEBUG = env.bool("DEBUG", default=False)
-SECRET_KEY = env.str("SECRET_KEY")
+
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Debugging to check if the environment variables are loaded
+print(f"DEBUG: {DEBUG}")
+print(f"SECRET_KEY: {SECRET_KEY}")
+print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-v*&ae2g-3)3qp*w^c652uun(s*2p*=7@^#wshzfa)9r326mj67"
+SECRET_KEY = "django-insecure-v*&ae2g-3)3qp*w^c652uun(s*2p*=7@^#wshzfa)9r326mj67"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+print(f"SECRET_KEY: {SECRET_KEY}")
 
 # Application definition
 
@@ -43,8 +53,8 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Adjust based on frontend URL
     "http://172.20.10.9:3000",
-    "trip-planner-app.onrender.com",
-    "trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
+    "https://trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
+    "https://trip-planner-app-n295.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
