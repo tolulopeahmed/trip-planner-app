@@ -55,9 +55,17 @@ CORS_ALLOWED_ORIGINS = [
     "https://trip-planner-app-n295.onrender.com",
 ]
 
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
+#     "https://trip-planner-app-n295.onrender.com",
+# ]
+
+# CSRF_TRUSTED_ORIGINS = ["*"]
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
-    "https://trip-planner-app-n295.onrender.com",
+    "http://localhost:3000",  # For local frontend development
+    "https://trip-planner-app-n295.onrender.com",  # Your deployed backend
+    "https://your-vercel-frontend-url.vercel.app",  # Your deployed frontend
 ]
 
 
