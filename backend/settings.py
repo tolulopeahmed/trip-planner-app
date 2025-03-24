@@ -51,15 +51,11 @@ INSTALLED_APPS = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Adjust based on frontend URL
-    "http://172.20.10.9:3000",
     "https://trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
     "https://trip-planner-app-n295.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://172.20.10.9:3000",
     "https://trip-planner-57q9uvfsq-tolulope-ahmed-dr-tees-projects.vercel.app",
     "https://trip-planner-app-n295.onrender.com",
 ]
