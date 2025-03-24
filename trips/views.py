@@ -1,6 +1,9 @@
 from rest_framework import generics
 from .models import Trip
 from .serializers import TripSerializer
+from datetime import timedelta
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 # API View for Creating & Listing Trips
@@ -12,13 +15,6 @@ class TripListCreateView(generics.ListCreateAPIView):
 class TripDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Trip.objects.all()
     serializer_class = TripSerializer
-
-
-from datetime import timedelta
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Trip
-from .serializers import TripSerializer
 
 
 class TripPlannerView(APIView):
@@ -62,3 +58,11 @@ class TripPlannerView(APIView):
             )
 
         return Response(serializer.errors, status=400)
+
+
+class LatestTripView(APIView):
+    def get(self, request):
+        latest_trip = Trip.objects.order_by("-start_time").first()  # Get latest trip
+        if latest_trip:
+            return Response(TripSerializer(latest_trip).data, status=200)
+        return Response({"message": "No trips found."}, status=404)
